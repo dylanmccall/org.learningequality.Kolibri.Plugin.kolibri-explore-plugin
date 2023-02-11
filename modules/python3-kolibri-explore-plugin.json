@@ -1,0 +1,14 @@
+{
+    "name": "python3-kolibri-explore-plugin",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --target=\"${FLATPAK_DEST}/${PLUGIN_PYTHON_PATH}\" \"kolibri-explore-plugin\" --no-build-isolation"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/86/24/058c0696492491667633dfb4d0d40ff66a0e98dd5df1b22bb36da596475e/kolibri_explore_plugin-6.24.0-py2.py3-none-any.whl",
+            "sha256": "d4c3976d3255edd798fca0f70e8fb8966021a9c0046f5ca8cade8079aedf4997"
+        }
+    ]
+}

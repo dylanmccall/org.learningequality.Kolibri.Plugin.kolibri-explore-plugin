@@ -1,0 +1,31 @@
+---
+id: org.learningequality.Kolibri.Plugin.kolibri-explore-plugin
+branch: "1.0"
+runtime: "org.learningequality.Kolibri"
+runtime-version: "stable"
+sdk: "org.gnome.Sdk//42"
+build-extension: true
+appstream-compose: false
+separate-locales: false
+build-options:
+  env:
+    PLUGIN_PYTHON_PATH: lib/python
+modules:
+- modules/python3-kolibri-explore-plugin.json
+- name: apps-bundle
+  buildsystem: simple
+  sources:
+  - type: archive
+    url: https://github.com/endlessm/kolibri-explore-plugin/releases/download/v6.24.0/apps-bundle.zip
+    dest: apps-bundle
+    sha256: 703c4feb6cd9e2d7e542ede2b558e3df814f2a6d8c5a62c5346330171a066921
+  build-commands:
+  - cp -R apps-bundle ${FLATPAK_DEST}/${PLUGIN_PYTHON_PATH}/kolibri_explore_plugin
+- name: extra-data
+  buildsystem: simple
+  sources:
+  - type: dir
+    path: data
+    dest: data
+  build-commands:
+  - install -Dm644 data/${FLATPAK_ID}.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo
